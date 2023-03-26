@@ -47,16 +47,13 @@ const Hero = () => {
     }, 2000);
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_HOME_URL}/bookings`,
-        {
-          destination,
-          dateOfTravel,
-          timeOfTravel,
-          numberOfPassengers,
-          phoneNumber,
-        }
-      );
+      const res = await axios.post("http://localhost:8800/api/bookings", {
+        destination,
+        dateOfTravel,
+        timeOfTravel,
+        numberOfPassengers,
+        phoneNumber,
+      });
       try {
         const res = await axios.post(`${import.meta.env.VITE_PAYMENT_URL}`, {
           amount: 500,

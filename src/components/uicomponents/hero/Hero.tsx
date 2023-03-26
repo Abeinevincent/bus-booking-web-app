@@ -47,18 +47,24 @@ const Hero = () => {
     }, 2000);
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_HOME_URL}/bookings`, {
-        destination,
-        dateOfTravel,
-        timeOfTravel,
-        numberOfPassengers,
-        phoneNumber,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_HOME_URL}/bookings`,
+        {
+          destination,
+          dateOfTravel,
+          timeOfTravel,
+          numberOfPassengers,
+          phoneNumber,
+        }
+      );
       try {
-        const res = await axios.post(`${import.meta.env.VITE_HOME_URL}/payments/payment`, {
-          amount: 500,
-          contact: phoneNumber,
-        });
+        const res = await axios.post(
+          `${import.meta.env.VITE_HOME_URL}/payments/payment`,
+          {
+            amount: 500,
+            phoneNumber,
+          }
+        );
         console.log(res.data);
       } catch (err) {
         console.log(err);

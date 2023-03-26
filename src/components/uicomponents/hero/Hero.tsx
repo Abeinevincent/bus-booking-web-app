@@ -55,15 +55,9 @@ const Hero = () => {
         phoneNumber,
       });
       try {
-        const res = await axios.post(`${import.meta.env.VITE_PAYMENT_URL}`, {
+        const res = await axios.post(`${import.meta.env.VITE_HOME_URL}`, {
           amount: 500,
           contact: phoneNumber,
-          username: import.meta.env.VITE_PAYMENT_URL,
-          api_key: import.meta.env.VITE_PAYMENT_URL,
-          transaction_reference: generateRef(),
-          narrative: import.meta.env.VITE_PAYMENT_URL,
-          ipn_url: import.meta.env.VITE_PAYMENT_URL,
-          fpn_url: import.meta.env.VITE_PAYMENT_URL,
         });
         console.log(res.data);
       } catch (err) {

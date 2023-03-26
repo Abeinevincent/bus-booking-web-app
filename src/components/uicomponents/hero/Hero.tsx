@@ -55,7 +55,7 @@ const Hero = () => {
         phoneNumber,
       });
       try {
-        const res = await axios.post(`${import.meta.env.VITE_HOME_URL}`, {
+        const res = await axios.post(`${import.meta.env.VITE_HOME_URL}/payments/payment`, {
           amount: 500,
           contact: phoneNumber,
         });

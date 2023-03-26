@@ -73,7 +73,7 @@ const Hero = () => {
         console.log(err);
       }
       console.log(res.data);
-      // setShowSeats(true);
+      setShowSeats(true);
     } catch (err) {
       console.log(err);
     }

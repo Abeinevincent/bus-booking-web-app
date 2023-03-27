@@ -59,34 +59,6 @@ const Hero = () => {
       setIsLoading(false);
       toast.success("Success, select seats to continue!");
     }, 3000);
-
-    // try {
-    //   const res = await axios.post(
-    //     `${import.meta.env.VITE_HOME_URL}/bookings`,
-    //     {
-    //       destination,
-    //       dateOfTravel,
-    //       timeOfTravel,
-    //       numberOfPassengers,
-    //       phoneNumber,
-    //     }
-    //   );
-    //   try {
-    //     const res = await axios.post(
-    //       `${import.meta.env.VITE_HOME_URL}/payments/payment`,
-    //       {
-    //         amount: 500,
-    //         phoneNumber,
-    //       }
-    //     );
-    //     console.log(res.data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    //   console.log(res.data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   // Make Payment **********************************************
@@ -167,14 +139,14 @@ const Hero = () => {
         >
           <Box>
             <Text>Experience travel in style</Text>
-            <Heading overflow={"hidden"} color={'gray'} my={3}>
+            <Heading overflow={"hidden"} color={"gray"} my={3}>
               Book a Ticket Now
             </Heading>
             <form>
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={5}
+                mb={3}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -213,7 +185,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={5}
+                mb={3}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -236,7 +208,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={5}
+                mb={3}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -273,7 +245,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={5}
+                mb={3}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>

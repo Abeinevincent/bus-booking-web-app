@@ -33,7 +33,7 @@ const Seats = ({
   // useEffect hook to update state variable on component mount
   useEffect(() => {
     let arr = [];
-    for (let i = 1; i <= 64; i++) {
+    for (let i = 1; i <= 40; i++) {
       arr.push(i);
     }
     setSeatNumbers(arr);

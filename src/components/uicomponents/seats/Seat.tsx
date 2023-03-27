@@ -17,8 +17,8 @@ const Seat = ({ occupied, seatNumber, onClick }: SeatProps) => {
 
   return (
     <Box
-      w={20}
-      h={20}
+      w={35}
+      h={35}
       border={"1px solid white"}
       borderBottom={"3px solid yellow"}
       display="flex"

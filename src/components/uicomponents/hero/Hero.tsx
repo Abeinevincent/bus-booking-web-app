@@ -112,7 +112,7 @@ const Hero = () => {
   return (
     <Flex h={"100vh"}>
       <Box
-        display={{ base: "none", lg: "flex" }}
+        display={{ base: "none", md: "none", lg: "flex" }}
         alignItems="center"
         justifyContent={"center"}
         flex={1}

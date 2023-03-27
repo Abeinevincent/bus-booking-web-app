@@ -82,7 +82,7 @@ const Seats = ({
       <Box
         display="flex"
         flexWrap={"wrap"}
-        padding={10}
+        padding={5}
         alignItems="center"
         justifyContent="center"
       >

@@ -22,7 +22,7 @@ export const MenuItem = ({
         // display="block"
         fontSize={"lg"}
         // color={active ? "white" : PrimaryColor}
-        color="white"
+        color="#222"
         {...rest}
         display="flex"
         alignItems={"center"}

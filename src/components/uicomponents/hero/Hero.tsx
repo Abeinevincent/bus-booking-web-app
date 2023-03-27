@@ -158,16 +158,16 @@ const Hero = () => {
       </Box>
       {!showSeats && showForm && (
         <Box
-          bg={"darkblue"}
-          color="white"
-          h={"100%"}
+          bg={"white"}
+          color="black"
+          h={"90%"}
           p={{ base: 1, lg: 5 }}
           pl={{ base: 2, lg: 20 }}
           flex={1}
         >
           <Box>
             <Text>Experience travel in style</Text>
-            <Heading overflow={"hidden"} my={3}>
+            <Heading overflow={"hidden"} color={'gray'} my={3}>
               Book a Ticket Now
             </Heading>
             <form>

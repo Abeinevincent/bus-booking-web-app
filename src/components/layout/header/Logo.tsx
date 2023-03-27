@@ -10,12 +10,7 @@ export const Logo = (props: LogoProps) => {
   return (
     <Box {...props}>
       <Text fontSize={"lg"} color="white" fontWeight="bold">
-        <Image
-          src={MyLogo}
-          alt="logo"
-          // style={{ width: "230px" }}
-          width="400px"
-        />
+        <Image src={MyLogo} alt="logo" width="600px" />
         {/* GLOBALCOACHES */}
       </Text>
     </Box>

@@ -132,21 +132,21 @@ const Hero = () => {
         <Box
           bg={"white"}
           color="black"
-          h={"90%"}
+          h={"100%"}
           p={{ base: 1, lg: 5 }}
           pl={{ base: 2, lg: 20 }}
           flex={1}
         >
           <Box>
             <Text>Experience travel in style</Text>
-            <Heading overflow={"hidden"} color={"gray"} my={3}>
+            <Text overflow={"hidden"} color={"gray"} fontSize={25} my={1}>
               Book a Ticket Now
-            </Heading>
+            </Text>
             <form>
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={1}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -185,7 +185,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={1}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -208,7 +208,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={1}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -245,7 +245,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={1}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -267,6 +267,7 @@ const Hero = () => {
                 bg={"#e1ad01"}
                 colorScheme={"orange"}
                 px={20}
+                mb={5}
                 w={{ base: "93%", lg: "40%" }}
                 py={4}
                 onClick={createBooking}

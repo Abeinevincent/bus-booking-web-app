@@ -63,7 +63,7 @@ const NavBar = () => {
         w="100vw"
         shadow={"lg"}
         px={12}
-        zIndex={999999}
+        zIndex={2}
         py={6}
         position={active ? "fixed" : "sticky"}
         top={0}

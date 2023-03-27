@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Navbar from "./components/layout/header/Navbar";
 import { Home } from "./pages/home/Home";
 const router = createBrowserRouter([
   {
@@ -6,25 +7,32 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "about",
-    element: <div>About</div>,
+    path: "contact",
+    element: (
+      <div>
+        <Navbar />
+        <p>Contact Page here</p>
+      </div>
+    ),
   },
-  // {
-  //   path: "contact",
-  //   element: <Contact />
-  // },
-  // {
-  //   path: "newsandupdates",
-  //   element: <News />
-  // },
-  // {
-  //   path: "gallery",
-  //   element: <Gallery />
-  // },
-  // {
-  //   path: "academia",
-  //   element: <Academia />
-  // },
+  {
+    path: "bookings",
+    element: (
+      <div>
+        <Navbar />
+        <p>Bookings Page here</p>
+      </div>
+    ),
+  },
+  {
+    path: "login",
+    element: (
+      <div>
+        <Navbar />
+        <p>Login page here</p>
+      </div>
+    ),
+  },
 ]);
 
 export default function App() {

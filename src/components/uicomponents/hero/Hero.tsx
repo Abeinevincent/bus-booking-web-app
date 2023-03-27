@@ -13,9 +13,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image1 from "../../../assets/images/globalimg1.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Seats from "../seats/Seats";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Hero = () => {
   const [destination, setDestination] = useState("");
@@ -26,6 +28,10 @@ const Hero = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showSeats, setShowSeats] = useState(false);
+  const [showForm, setSowForm] = useState(true);
+  const [clickedNumbers, setClickedNumbers] = useState<number[]>([]);
+
+  const [viewNumber, setViewNumber] = useState(false);
 
   // GENERATE UNIQUE REFERENCE
   const generateRef = () => {
@@ -43,8 +49,49 @@ const Hero = () => {
     setIsLoading(true);
 
     setTimeout(() => {
+      if (destination && numberOfPassengers && timeOfTravel && dateOfTravel) {
+        console.log("All good!");
+        setSowForm(false);
+        setShowSeats(true);
+      } else {
+        console.log("Error, sth went wrong");
+      }
       setIsLoading(false);
-    }, 2000);
+      toast.success("Success, select seats to continue!");
+    }, 3000);
+
+    // try {
+    //   const res = await axios.post(
+    //     `${import.meta.env.VITE_HOME_URL}/bookings`,
+    //     {
+    //       destination,
+    //       dateOfTravel,
+    //       timeOfTravel,
+    //       numberOfPassengers,
+    //       phoneNumber,
+    //     }
+    //   );
+    //   try {
+    //     const res = await axios.post(
+    //       `${import.meta.env.VITE_HOME_URL}/payments/payment`,
+    //       {
+    //         amount: 500,
+    //         phoneNumber,
+    //       }
+    //     );
+    //     console.log(res.data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    //   console.log(res.data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
+
+  // Make Payment **********************************************
+  const makePayment = async () => {
+    setIsLoading(true);
 
     try {
       const res = await axios.post(
@@ -65,15 +112,29 @@ const Hero = () => {
             phoneNumber,
           }
         );
-        console.log(res.data);
+        console.log(res.data, "good boy");
+        toast.success(
+          "Success, a mobile money payment has been initiated on the provided phone number, confirm to get your ticket",
+          {
+            autoClose: 10000,
+          }
+        );
       } catch (err) {
         console.log(err);
       }
       console.log(res.data);
-      setShowSeats(true);
     } catch (err) {
       console.log(err);
     }
+
+    setTimeout(() => {
+      if (phoneNumber && phoneNumber.length === 10) {
+        console.log("All good!");
+      } else {
+        console.log("Error, sth went wrong");
+      }
+      setIsLoading(false);
+    }, 3000);
   };
 
   return (
@@ -95,25 +156,25 @@ const Hero = () => {
           alt=""
         />
       </Box>
-      {!showSeats && (
+      {!showSeats && showForm && (
         <Box
           bg={"darkblue"}
           color="white"
           h={"100%"}
-          p={{ base: 2, lg: 5 }}
-          pl={{ base: 5, lg: 20 }}
+          p={{ base: 1, lg: 5 }}
+          pl={{ base: 2, lg: 20 }}
           flex={1}
         >
           <Box>
             <Text>Experience travel in style</Text>
             <Heading overflow={"hidden"} my={3}>
-              Book a ticket now
+              Book a Ticket Now
             </Heading>
             <form>
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={5}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -152,7 +213,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={5}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -175,7 +236,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={5}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -212,7 +273,7 @@ const Hero = () => {
               <Center
                 flexDirection={"column"}
                 w={{ base: "97%", lg: "90%" }}
-                mb={3}
+                mb={5}
                 h="100%"
               >
                 <FormLabel alignSelf={"flex-start"}>
@@ -229,29 +290,7 @@ const Hero = () => {
                   />
                 </InputGroup>
               </Center>
-              <Center
-                flexDirection={"column"}
-                w={{ base: "97%", lg: "90%" }}
-                mb={3}
-                h="100%"
-              >
-                <FormLabel alignSelf={"flex-start"}>
-                  Enter Phone Number
-                  <span style={{ color: "red" }}>*</span>
-                </FormLabel>
-                <InputGroup>
-                  <Input
-                    value={phoneNumber}
-                    placeholder="E.g 0779924304"
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    w={{ base: "95%", lg: "80%" }}
-                    size={"lg"}
-                    required
-                    maxLength={10}
-                    minLength={10}
-                  />
-                </InputGroup>
-              </Center>
+
               <Button
                 bg={"#e1ad01"}
                 colorScheme={"orange"}
@@ -263,12 +302,12 @@ const Hero = () => {
                   !destination ||
                   !numberOfPassengers ||
                   !timeOfTravel ||
-                  !dateOfTravel ||
-                  !phoneNumber
+                  !dateOfTravel
                 }
               >
                 Continue
               </Button>
+              <ToastContainer />
               {isLoading && (
                 <Box
                   bg="gray"
@@ -290,7 +329,34 @@ const Hero = () => {
           </Box>
         </Box>
       )}
-      {showSeats && (
+
+      {/* Show seats */}
+      {showSeats && !viewNumber && (
+        <Box
+          bg={"darkblue"}
+          color="white"
+          h={"100%"}
+          p={{ base: 1, lg: 5 }}
+          pl={{ base: 2, lg: 20 }}
+          flex={1}
+          display="flex"
+          alignItems="flex-start"
+          justifyContent="center"
+        >
+          <Seats
+            clickedNumbers={clickedNumbers}
+            setClickedNumbers={setClickedNumbers}
+            setSowForm={setSowForm}
+            setShowSeats={setShowSeats}
+            setViewNumber={setViewNumber}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+        </Box>
+      )}
+
+      {/* Set Phone Number Input to visible */}
+      {viewNumber && (
         <Box
           bg={"darkblue"}
           color="white"
@@ -299,10 +365,67 @@ const Hero = () => {
           pl={{ base: 5, lg: 20 }}
           flex={1}
           display="flex"
-          alignItems="flex-start"
+          alignItems={"center"}
           justifyContent="center"
         >
-          <Seats />
+          <form>
+            <Center
+              flexDirection={"column"}
+              w={{ base: "97%", lg: "90%" }}
+              mb={3}
+              h="100%"
+            >
+              <Text alignSelf={"flex-start"} mb={3}>
+                Total Payment: {clickedNumbers.length * 40000}
+              </Text>
+              <FormLabel alignSelf={"flex-start"} mb={2}>
+                Enter Phone Number
+                <span style={{ color: "red" }}>*</span>
+              </FormLabel>
+              <InputGroup>
+                <Input
+                  value={phoneNumber}
+                  placeholder="E.g 0779924304"
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  w={{ base: "95%", lg: "100%" }}
+                  size={"lg"}
+                  required
+                  maxLength={10}
+                  minLength={10}
+                />
+              </InputGroup>
+            </Center>
+            <ToastContainer />
+            <Button
+              bg={"#e1ad01"}
+              colorScheme={"orange"}
+              px={20}
+              w={{ base: "93%", lg: "90%" }}
+              py={4}
+              onClick={makePayment}
+              isDisabled={!phoneNumber || phoneNumber.length !== 10}
+            >
+              Confirm Payment
+            </Button>
+            <ToastContainer />
+            {isLoading && (
+              <Box
+                bg="gray"
+                opacity="0.9"
+                position="fixed"
+                top="0"
+                bottom="0"
+                left="0"
+                right="0"
+                zIndex="1000"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Spinner size="xl" color="white" />
+              </Box>
+            )}
+          </form>
         </Box>
       )}
     </Flex>

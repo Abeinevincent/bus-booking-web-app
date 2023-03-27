@@ -26,7 +26,7 @@ export const MenuLinks = ({
           <FaHome />
           Home
         </MenuItem>
-        <MenuItem active={active} to="/about">
+        <MenuItem active={active} to="/bookings">
           <BsBookFill />
           Bookings
         </MenuItem>
@@ -34,28 +34,16 @@ export const MenuLinks = ({
           <BsPhone />
           Contact
         </MenuItem>
-        <MenuItem active={active} to="/newsandupdates">
+        <MenuItem active={active} to="http://globalcoachesug.com">
           <BsGlobe />
           Website
         </MenuItem>
 
-        <MenuItem active={active} to="/">
+        <MenuItem active={active} to="/login">
           <FaSignInAlt />
           Login
         </MenuItem>
-        {/* <MenuItem active={active} to="/" isLast>
-          <Button
-            size="sm"
-            rounded="md"
-            color={["primary.500", "primary.500", "white", "white"]}
-            bg={["white", "white", "primary.500", "primary.500"]}
-            _hover={{
-              bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
-            }}
-          >
-            Create Account
-          </Button>
-        </MenuItem> */}
+        
       </Stack>
     </Box>
   );

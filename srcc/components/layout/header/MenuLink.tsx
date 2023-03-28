@@ -1,6 +1,6 @@
 import { Box, Stack, Button } from "@chakra-ui/react";
 import { BsBookFill, BsGlobe, BsPhone } from "react-icons/bs";
-import { FaBook, FaHome, FaRegistered, FaSignInAlt } from "react-icons/fa";
+import { FaHome, FaRegistered, FaSignInAlt } from "react-icons/fa";
 import { MenuItem } from "./MenuItem";
 
 export const MenuLinks = ({
@@ -25,10 +25,6 @@ export const MenuLinks = ({
         <MenuItem active={active} to="/">
           <FaHome />
           Home
-        </MenuItem>
-        <MenuItem active={active} to="/book">
-          <FaBook />
-          Book
         </MenuItem>
         <MenuItem active={active} to="/bookings">
           <BsBookFill />

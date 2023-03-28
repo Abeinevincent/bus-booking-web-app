@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Seat from "./Seat";
 import { toast, ToastContainer } from "react-toastify";
@@ -33,7 +33,7 @@ const Seats = ({
   // useEffect hook to update state variable on component mount
   useEffect(() => {
     let arr = [];
-    for (let i = 1; i <= 64; i++) {
+    for (let i = 1; i <= 40; i++) {
       arr.push(i);
     }
     setSeatNumbers(arr);
@@ -71,18 +71,18 @@ const Seats = ({
       <ToastContainer />
       <Box
         display="flex"
-        gap={{ base: 1, lg: 2 }}
+        gap={{ base: 2, lg: 4 }}
         alignItems="center"
         justifyContent="center"
       >
         <hr style={{ width: "200px" }} />
-        <Text fontSize={18}>Select Seats</Text>
+        <Text fontSize={18}>Select Your Seats</Text>
         <hr style={{ width: "200px" }} />
       </Box>
       <Box
         display="flex"
         flexWrap={"wrap"}
-        padding={2}
+        padding={5}
         alignItems="center"
         justifyContent="center"
       >
@@ -95,27 +95,8 @@ const Seats = ({
           />
         ))}
       </Box>
-      <Flex flexDir={'column'} mt={1} justifyContent='center' align={'center'} gap={1}>
-        <Text mb={3}>
-          Total Payment: {clickedNumbers.length * 40000}
-        </Text>
-        <Button
-          bg={"#e1ad01"}
-          colorScheme={"orange"}
-          px={20}
-          mb={5}
-          w={{ base: "93%", lg: "90%" }}
-          py={4}
-          // onClick={createBooking}
-          // isDisabled={
-          //   // !destination || !numberOfPassengers || !timeOfTravel || !dateOfTravel
-          // }
-        >
-          Confirm Payment
-        </Button>
-      </Flex>
       <Box display={"flex"} alignItems="center" justifyContent={"center"}>
-        {/* <Button
+        <Button
           bg={"#e1ad01"}
           colorScheme={"orange"}
           px={20}
@@ -125,7 +106,7 @@ const Seats = ({
           isDisabled={clickedNumbers.length < 1}
         >
           Continue
-        </Button> */}
+        </Button>
         {isLoading && (
           <Box
             bg="gray"

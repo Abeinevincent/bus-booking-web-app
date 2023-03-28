@@ -17,8 +17,8 @@ const Seat = ({ occupied, seatNumber, onClick }: SeatProps) => {
 
   return (
     <Box
-      w={30}
-      h={30}
+      w={35}
+      h={35}
       border={"1px solid white"}
       borderBottom={"3px solid yellow"}
       display="flex"
@@ -27,12 +27,12 @@ const Seat = ({ occupied, seatNumber, onClick }: SeatProps) => {
       justifyContent="center"
       cursor="pointer"
       onClick={handleClick}
-      padding={1}
-      margin={1}
+      padding={5}
+      margin={3}
       background={clicked ? "teal" : "transparent"}
       color="white"
     >
-      <Text fontSize={13}> {seatNumber}</Text>
+      {seatNumber}
     </Box>
   );
 };

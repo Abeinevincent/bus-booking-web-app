@@ -30,24 +30,23 @@ export const MenuLinks = ({
           <FaBook />
           Book
         </MenuItem>
-        <MenuItem active={active} to="/bookings">
+        {/* <MenuItem active={active} to="/bookings">
           <BsBookFill />
           Bookings
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem active={active} to="/contact">
           <BsPhone />
-          Contact
+          Contact Us
         </MenuItem>
         <MenuItem active={active} to="http://globalcoachesug.com">
           <BsGlobe />
           Website
         </MenuItem>
 
-        <MenuItem active={active} to="/login">
+        {/* <MenuItem active={active} to="/login">
           <FaSignInAlt />
           Login
-        </MenuItem>
-        
+        </MenuItem> */}
       </Stack>
     </Box>
   );

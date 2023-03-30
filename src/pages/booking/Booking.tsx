@@ -13,8 +13,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import Image1 from "../../../assets/images/globalimg1.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Seats from "../../components/uicomponents/seats/Seats";
 import { toast, ToastContainer } from "react-toastify";
@@ -26,46 +25,14 @@ const Booking = () => {
   const [dateOfTravel, setDateOfTravel] = useState("");
   const [timeOfTravel, setTimeOfTravel] = useState("");
   const [numberOfPassengers, setNumberOfPassengers] = useState<any>(1);
-  const [seatNumber, setSeatNumber] = useState(0);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showSeats, setShowSeats] = useState(false);
-  const [showForm, setSowForm] = useState(true);
   const [clickedNumbers, setClickedNumbers] = useState<number[]>([]);
   const [viewNumber, setViewNumber] = useState(false);
 
-  // GENERATE UNIQUE REFERENCE
-  const generateRef = () => {
-    let dt = new Date().getTime();
-    let ref = "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-      let r = (dt + Math.random() * 16) % 16 | 0;
-      dt = Math.floor(dt / 16);
-      return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
-    });
-    return ref;
-  };
-
-  // CREATE BOOKING ************************************
-  const createBooking = async () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      if (destination && numberOfPassengers && timeOfTravel && dateOfTravel) {
-        console.log("All good!");
-        setSowForm(false);
-        setShowSeats(true);
-      } else {
-        console.log("Error, sth went wrong");
-      }
-      setIsLoading(false);
-      toast.success("Success, select seats to continue!");
-    }, 3000);
-  };
-
-  // Make Payment **********************************************
+  // Create Booking and Initiate Payment **********************************************
   const makePayment = async () => {
     setIsLoading(true);
-
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_HOME_URL}/bookings`,
@@ -75,6 +42,7 @@ const Booking = () => {
           timeOfTravel,
           numberOfPassengers,
           phoneNumber,
+          seatNumber: clickedNumbers,
         }
       );
       try {
@@ -85,29 +53,28 @@ const Booking = () => {
             phoneNumber,
           }
         );
-        console.log(res.data, "good boy");
         toast.success(
           "Success, a mobile money payment has been initiated on the provided phone number, confirm to get your ticket",
           {
-            autoClose: 10000,
+            autoClose: 15000,
           }
         );
+
+        setDestination("");
+        setClickedNumbers([]);
+        setTimeOfTravel("");
+        setDateOfTravel("");
+        setPhoneNumber("");
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
+        setIsLoading(false);
       }
       console.log(res.data);
     } catch (err) {
       console.log(err);
-    }
-
-    setTimeout(() => {
-      if (phoneNumber && phoneNumber.length === 10) {
-        console.log("All good!");
-      } else {
-        console.log("Error, sth went wrong");
-      }
       setIsLoading(false);
-    }, 3000);
+    }
   };
 
   return (
@@ -124,7 +91,14 @@ const Booking = () => {
         className="headerSection"
         p={3}
       >
-        <Flex w={{base: "98%", lg: "55%"}} h="auto" my={2} flexDirection={{base: "column", lg: "row"}} bg={"rgba(255,255,255,0.7)"} color="black">
+        <Flex
+          w={{ base: "98%", lg: "55%" }}
+          h="auto"
+          my={2}
+          flexDirection={{ base: "column", lg: "row" }}
+          bg={"rgba(255,255,255,0.7)"}
+          color="black"
+        >
           {/* Other Inputs */}
           <Box opacity={1} flex={1}>
             <Box
@@ -253,7 +227,6 @@ const Booking = () => {
                     mb={3}
                     h="100%"
                   >
-                    
                     <FormLabel alignSelf={"flex-start"} mb={2}>
                       Enter Phone Number
                       <span style={{ color: "red" }}>*</span>
@@ -271,25 +244,8 @@ const Booking = () => {
                       />
                     </InputGroup>
                   </Center>
-                  
+
                   <ToastContainer />
-                  {isLoading && (
-                    <Box
-                      bg="gray"
-                      opacity="0.9"
-                      position="fixed"
-                      top="0"
-                      bottom="0"
-                      left="0"
-                      right="0"
-                      zIndex="1000"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Spinner size="xl" color="white" />
-                    </Box>
-                  )}
                 </form>
               </Box>
             </Box>
@@ -310,11 +266,14 @@ const Booking = () => {
               <Seats
                 clickedNumbers={clickedNumbers}
                 setClickedNumbers={setClickedNumbers}
-                setSowForm={setSowForm}
-                setShowSeats={setShowSeats}
                 setViewNumber={setViewNumber}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                destination={destination}
+                makePayment={makePayment}
+                phoneNumber={phoneNumber}
+                timeOfTravel={timeOfTravel}
+                dateOfTravel={dateOfTravel}
               />
             </Box>
           </Box>

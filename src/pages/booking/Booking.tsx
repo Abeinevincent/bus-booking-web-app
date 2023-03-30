@@ -24,7 +24,6 @@ const Booking = () => {
   const [destination, setDestination] = useState("");
   const [dateOfTravel, setDateOfTravel] = useState("");
   const [timeOfTravel, setTimeOfTravel] = useState("");
-  const [numberOfPassengers, setNumberOfPassengers] = useState<any>(1);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [clickedNumbers, setClickedNumbers] = useState<number[]>([]);
@@ -40,7 +39,7 @@ const Booking = () => {
           destination,
           dateOfTravel,
           timeOfTravel,
-          numberOfPassengers,
+          numberOfPassengers: clickedNumbers.length,
           phoneNumber,
           seatNumber: clickedNumbers,
         }

@@ -109,6 +109,7 @@ const Hero = () => {
     }, 3000);
   };
 
+  
   return (
     <Flex h={"100vh"}>
       <Box
@@ -319,8 +320,6 @@ const Hero = () => {
           <Seats
             clickedNumbers={clickedNumbers}
             setClickedNumbers={setClickedNumbers}
-            setSowForm={setSowForm}
-            setShowSeats={setShowSeats}
             setViewNumber={setViewNumber}
             isLoading={isLoading}
             setIsLoading={setIsLoading}

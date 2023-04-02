@@ -75,11 +75,12 @@ const Seats = ({
           />
         ))}
       </Box>
-      <Flex
+      <Box
+        display={"flex"}
         flexDir={"column"}
         mt={1}
         justifyContent="center"
-        align={"center"}
+        alignItems={"center"}
         gap={1}
       >
         <Text mb={3}>Total Payment: {clickedNumbers.length * 40000}</Text>
@@ -102,7 +103,7 @@ const Seats = ({
         >
           {isLoading ? <Spinner /> : "Confirm Payment"}
         </Button>
-      </Flex>
+      </Box>
       {/* <Box display={"flex"} alignItems="center" justifyContent={"center"}>
         {isLoading && (
           <Box

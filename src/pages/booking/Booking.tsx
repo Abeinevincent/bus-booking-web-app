@@ -79,7 +79,8 @@ const Booking = () => {
   return (
     <Box>
       <NavBar />
-      <Flex
+      <Box
+      display={'flex'}
         w="100vw"
         h={"100vh"}
         alignItems={"center"}
@@ -277,7 +278,7 @@ const Booking = () => {
             </Box>
           </Box>
         </Flex>
-      </Flex>
+      </Box>
     </Box>
   );
 };

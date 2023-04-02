@@ -14,8 +14,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./src", // This must be specified if "paths" is.
+    "paths": {
+      "typescript": ["../node_modules/typescript/lib"] // This mapping is relative to "baseUrl"
+    }
   },
   "include": ["src"],
+  // "exclude": ["node_modules"]
   "references": [{ "path": "./tsconfig.node.json" }]
 }

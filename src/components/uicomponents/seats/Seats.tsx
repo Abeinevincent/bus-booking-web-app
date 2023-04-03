@@ -13,7 +13,7 @@ type SeatsProps = {
   phoneNumber: string;
   timeOfTravel: string;
   makePayment: () => void;
-  setClickedNumbers: React.Dispatch<React.SetStateAction<number[]>>;
+  setClickedNumbers: any;
 };
 
 const Seats = ({

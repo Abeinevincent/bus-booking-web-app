@@ -44,23 +44,6 @@ const Hero = () => {
     return ref;
   };
 
-  // CREATE BOOKING ************************************
-  const createBooking = async () => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      if (destination && numberOfPassengers && timeOfTravel && dateOfTravel) {
-        console.log("All good!");
-        setSowForm(false);
-        setShowSeats(true);
-      } else {
-        console.log("Error, sth went wrong");
-      }
-      setIsLoading(false);
-      toast.success("Success, select seats to continue!");
-    }, 3000);
-  };
-
   // Make Payment **********************************************
   const makePayment = async () => {
     setIsLoading(true);
@@ -84,29 +67,25 @@ const Hero = () => {
             phoneNumber,
           }
         );
-        console.log(res.data, "good boy");
+        console.log(res.data, );
         toast.success(
           "Success, a mobile money payment has been initiated on the provided phone number, confirm to get your ticket",
           {
             autoClose: 10000,
           }
         );
+        setIsLoading(false)
       } catch (err) {
         console.log(err);
+        setIsLoading(false)
       }
       console.log(res.data);
     } catch (err) {
       console.log(err);
+      setIsLoading(false)
     }
 
-    setTimeout(() => {
-      if (phoneNumber && phoneNumber.length === 10) {
-        console.log("All good!");
-      } else {
-        console.log("Error, sth went wrong");
-      }
-      setIsLoading(false);
-    }, 3000);
+    
   };
 
   
@@ -264,48 +243,15 @@ const Hero = () => {
                 </InputGroup>
               </Center>
 
-              <Button
-                bg={"#e1ad01"}
-                colorScheme={"orange"}
-                px={20}
-                mb={5}
-                w={{ base: "93%", lg: "40%" }}
-                py={4}
-                onClick={createBooking}
-                isDisabled={
-                  !destination ||
-                  !numberOfPassengers ||
-                  !timeOfTravel ||
-                  !dateOfTravel
-                }
-              >
-                Continue
-              </Button>
+             
               <ToastContainer />
-              {isLoading && (
-                <Box
-                  bg="gray"
-                  opacity="0.9"
-                  position="fixed"
-                  top="0"
-                  bottom="0"
-                  left="0"
-                  right="0"
-                  zIndex="1000"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Spinner size="xl" color="white" />
-                </Box>
-              )}
+             
             </form>
           </Box>
         </Box>
       )}
 
-      {/* Show seats */}
-      {showSeats && !viewNumber && (
+  {/* Seats */}
         <Box
           bg={"darkblue"}
           color="white"
@@ -321,11 +267,14 @@ const Hero = () => {
             clickedNumbers={clickedNumbers}
             setClickedNumbers={setClickedNumbers}
             setViewNumber={setViewNumber}
+            phoneNumber={phoneNumber}
+            destination={destination}
+            timeOfTravel={timeOfTravel}
+            dateOfTravel={dateOfTravel}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />
         </Box>
-      )}
 
       {/* Set Phone Number Input to visible */}
       {viewNumber && (
@@ -348,7 +297,7 @@ const Hero = () => {
               h="100%"
             >
               <Text alignSelf={"flex-start"} mb={3}>
-                Total Payment: {clickedNumbers.length * 40000}
+                Total Paymen: {clickedNumbers.length * 40000}
               </Text>
               <FormLabel alignSelf={"flex-start"} mb={2}>
                 Enter Phone Number
@@ -380,7 +329,7 @@ const Hero = () => {
               Confirm Payment
             </Button>
             <ToastContainer />
-            {isLoading && (
+            {/* {isLoading && (
               <Box
                 bg="gray"
                 opacity="0.9"
@@ -396,7 +345,7 @@ const Hero = () => {
               >
                 <Spinner size="xl" color="white" />
               </Box>
-            )}
+            )} */}
           </form>
         </Box>
       )}
